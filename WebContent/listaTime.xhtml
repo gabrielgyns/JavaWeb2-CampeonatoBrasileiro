@@ -1,0 +1,47 @@
+<ui:composition template="layoutPadrao.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="titulo">Lista de Times</ui:define>
+<ui:define name="corpo">
+	<h:form>
+		
+		<p:growl />
+		<p:panel header="Lista de Times">
+			<p:dataTable value="#{timeController.lista}" var="time" emptyMessage="Nenhum time cadastrado!">
+			
+				<p:column headerText="ID" width="50">
+					<h:outputText value="#{time.id}" />
+				</p:column>
+				
+				<p:column headerText="Descrição">
+					<h:outputText value="#{time.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Ação" width="200">
+					<p:commandButton value="Excluir" 
+						action="#{timeController.excluir}"
+						ajax="false">
+						<f:setPropertyActionListener 
+							value="#{time}" 
+							target="#{timeController.time}"/>
+					</p:commandButton>
+					
+					<p:commandButton value="Editar" 
+						action="#{timeController.editar}"
+						ajax="false">
+						<f:setPropertyActionListener 
+							value="#{time}" 
+							target="#{timeController.time}" />
+					</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+			
+		</p:panel>
+	</h:form>
+</ui:define>
+</ui:composition>

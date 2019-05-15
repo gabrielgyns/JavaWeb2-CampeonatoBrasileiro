@@ -1,0 +1,97 @@
+<ui:composition template="layoutPadrao.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Partidas</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<!-- <p:messages closable="true" /> -->
+			<p:growl />
+			
+			<p:panel header="Cadastro de Partidas" >
+				<center>
+				<p:panelGrid columns="2">
+				
+					<p:outputLabel value="Horario Partida: *" />
+					<p:inputText value="#{partidaController.partida.horarioPartida}"
+						required="true" requiredMessage="O campo HORÁRIO PARTIDA é obrigatório." />
+					
+					<p:outputLabel value="Local Partida: *" />
+					<p:inputText value="#{partidaController.partida.localPartida}"
+						required="true" requiredMessage="O campo LOCAL PARTIDA é obrigatório." />
+					
+					<p:outputLabel value="Saldo de Gols (Casa): *" />
+					<p:inputText value="#{partidaController.partida.saldoGolCasa}"
+						required="true" requiredMessage="O campo SALDO DE GOLS DO TIME DE CASA é obrigatório.">
+					</p:inputText>
+					
+					<p:outputLabel value="Saldo de Gols (Visitante): *" />
+					<p:inputText value="#{partidaController.partida.saldoGolVisitante}"
+						required="true" requiredMessage="O campo SALDO DE GOLS DO TIME VISITANTE é obrigatório.">
+					</p:inputText>
+					
+					<h:outputText value="Status da Partida: *  " />
+					<h:selectOneMenu value="#{partidaController.partida.statusPartida}"
+						required="true"
+						requiredMessage="O campo STATUS DA PARTIDA é obrigatório!" >
+					<f:selectItem  itemLabel=" SELECIONE " />
+					<f:selectItems 
+						var="partida"
+						value="#{partidaController.partida.status}" 
+						itemLabel="#{partida.descricao}" 
+						itemValue="#{partida}" />
+					</h:selectOneMenu>
+					
+					<h:outputText value="Time de Casa: *  " />
+					<h:selectOneMenu value="#{partidaController.timeCasaSelecionado}"
+						converter="timeConverter" 
+						required="true"
+						requiredMessage="O campo TIME DE CASA é obrigatório!" >
+					<f:selectItem  itemLabel=" SELECIONE " />
+					<f:selectItems 
+						var="time" 
+						value="#{timeController.lista}" 
+						itemLabel="#{time.descricao}" 
+						itemValue="#{time}" />
+					</h:selectOneMenu>
+					
+					<h:outputText value="Time Visitante: *  " />
+					<h:selectOneMenu value="#{partidaController.timeVisitanteSelecionado}"
+						converter="timeConverter" 
+						required="true"
+						requiredMessage="O campo TIME VISITANTE é obrigatório!" >
+					<f:selectItem  itemLabel=" SELECIONE " />
+					<f:selectItems 
+						var="time" 
+						value="#{timeController.lista}" 
+						itemLabel="#{time.descricao}" 
+						itemValue="#{time}" />
+					</h:selectOneMenu>
+							
+					<f:facet name="footer">
+						<p:commandButton 
+							value="Salvar" 
+							action="#{partidaController.salvar}" 
+							update="growl" 
+							icon="fa fa-save" 
+							ajax="false" />
+						<p:commandButton 
+							value="Limpar" 
+							action="cadastroPartida.xhtml" 
+							actionListener="#{partidaController.limparCampos}"
+							icon="fa fa-eraser"
+							update="form" 
+							ajax="false"
+							immediate="true" />
+					</f:facet>	
+	
+				</p:panelGrid>
+				</center>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

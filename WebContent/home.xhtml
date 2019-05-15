@@ -1,0 +1,29 @@
+<ui:composition template="layoutPadrao.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="titulo">Home</ui:define>
+
+<ui:define name="corpo">
+	<h1 style="text-align: center;">Bem vindo ao sistema!</h1>
+	<center>
+		<p:panelGrid columns="2" >
+			<h:outputText value="Version:" />
+			<h:outputText value="1.0.0" />
+			     
+			<h:outputText value="Team:" />
+			<h:outputText value="Gabriel S Soares" />
+			     
+			<h:outputText value="Enterprise:" />
+			<h:outputText value="Faculdade Delta" />
+			     
+			 <h:outputText value="Class:" />
+			 <h:outputText value="Desenvolvimento Web 2" />
+		</p:panelGrid>
+	</center>
+</ui:define>
+
+</ui:composition>

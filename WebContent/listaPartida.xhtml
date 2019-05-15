@@ -1,0 +1,67 @@
+<ui:composition template="layoutPadrao.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="titulo">Lista de Partidas</ui:define>
+<ui:define name="corpo">
+	<h:form>
+		
+		<p:growl />
+		<p:panel header="Lista de Partidas">
+			<p:dataTable value="#{partidaController.lista}" var="partida" emptyMessage="Nenhuma partida cadastrado!">
+			
+				<p:column headerText="ID" width="50">
+					<h:outputText value="#{partida.id}" />
+				</p:column>
+				
+				<p:column headerText="Horario Partida">
+					<h:outputText value="#{partida.horarioPartida}" />
+				</p:column>
+				
+				<p:column headerText="Local Partida">
+					<h:outputText value="#{partida.localPartida}" />
+				</p:column>
+				
+				<p:column headerText="Time Casa">
+					<h:outputText value="#{partida.timeCasa.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Placar" >
+					<center><h:outputText value="#{partida.placar}" /> </center>
+				</p:column>
+				
+				<p:column headerText="Time Visitante">
+					<h:outputText value="#{partida.timeVisitante.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Status Partida">
+					<h:outputText value="#{partida.statusPartida.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Ação" width="200">
+					<p:commandButton value="Excluir" 
+						action="#{partidaController.excluir}"
+						ajax="false">
+						<f:setPropertyActionListener 
+							value="#{partida}" 
+							target="#{partidaController.partida}"/>
+					</p:commandButton>
+					
+					<p:commandButton value="Editar" 
+						action="#{partidaController.editar}"
+						ajax="false">
+						<f:setPropertyActionListener 
+							value="#{partida}" 
+							target="#{partidaController.partida}" />
+					</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+			
+		</p:panel>
+	</h:form>
+</ui:define>
+</ui:composition>
