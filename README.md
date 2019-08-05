@@ -9,8 +9,8 @@ CRUD básico de gerenciamento de partidas de futebol.
 Podendo cadastrar o Time de futebol e a Partida.
 
 Foi utilizado para realização do trabalho:  
-*Java 8 
-*JSF 2.2
-*Primefaces  
-*PostgreSQL 
+* Java 8 
+* JSF 2.2
+* Primefaces  
+* PostgreSQL 
 
